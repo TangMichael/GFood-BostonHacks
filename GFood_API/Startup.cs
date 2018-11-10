@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Algolia.Search;
 
 namespace GFood_API
 {
@@ -18,6 +19,8 @@ namespace GFood_API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AlgoliaClient client = new AlgoliaClient("59HBV2PWON", "9d1d44d31f066fa800a674eb1eb076d4");
+            Index index = client.InitIndex("yelp");
         }
 
         public IConfiguration Configuration { get; }
