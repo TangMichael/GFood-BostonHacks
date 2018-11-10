@@ -13,6 +13,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Algolia.Search" Version="5.2.0" />
     <PackageReference Include="Algolia.Analytics" Version="1.0.0" />
+    <PackageReference Include="Clarifai" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

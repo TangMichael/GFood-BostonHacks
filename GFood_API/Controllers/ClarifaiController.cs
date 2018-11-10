@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Clarifai.API.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,17 +13,19 @@ namespace GFood_API.Controllers
     [ApiController]
     public class ClarifaiController : Controller
     {
+        ClarifaiHandler clarifai;
+
         // GET: /<controller>/
         public IActionResult Index()
         {
+            clarifai = new ClarifaiHandler();
             return View();
         }
         // GET api/values/5
         [HttpPost]
-        public ActionResult<string> Get([FromBody]string search)
+        public ClarifaiResponse<string> getSearchedConcept([FromBody]string search)
         {
-        
-            return search;
+            return clarifai.searchByConcept(search);
         }
 
         [HttpGet("{id}")]
