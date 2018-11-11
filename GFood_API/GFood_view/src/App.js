@@ -46,7 +46,17 @@ class App extends Component {
   }
 
   handleAccept() {
-    console.log('Accepted.');
+    console.log(this.state.businessDetails[this.state.currentImage].toString())
+   var x = "city: "+ this.state.businessDetails[this.state.currentImage].city.toString() + " Address: " + this.state.businessDetails[this.state.currentImage].address.toString()
+    + " state: " +  this.state.businessDetails[this.state.currentImage].state.toString() + " The restaurant is " + this.state.businessDetails[this.state.currentImage].name.toString()
+   fetch("https://localhost:5001/api/twilio", {
+     headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+     },
+     method:"POST",
+     body: JSON.stringify(x)
+   })
   }
 
   handleReject() {
