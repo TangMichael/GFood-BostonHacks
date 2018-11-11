@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react';
 
-export const AcceptButton = props => {
+export const DetailButton = props => {
     return (
       <div>
-        <Button onClick={props.onAccept}>Accept</Button>
+        <Button onClick={props.onMoreDetail}>Details</Button>
       </div>
     )
 }

@@ -18,6 +18,7 @@ class App extends Component {
     this.handleReject = this.handleReject.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleMoreDetail = this.handleMoreDetail.bind(this);
   }
 
   handleChange(e) {
@@ -40,6 +41,10 @@ class App extends Component {
       )
   }
 
+  handleAccept() {
+    console.log('Accepted.');
+  }
+
   handleReject() {
     console.log('Rejected.');
     let nextImagePosition = this.state.currentImage + 1;
@@ -48,16 +53,15 @@ class App extends Component {
     });
   }
 
-  handleAccept() {
-    console.log('Accepted.');
+  handleMoreDetail() {
+    console.log('Display more detail.')
   }
-
 
   render() {
     return (
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
-        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
+        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
       </div>
     );
   }
