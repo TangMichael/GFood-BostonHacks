@@ -21,18 +21,17 @@ namespace GFood_API.Controllers
     {
         ClarifaiHandler clarifai;
 
+        public ClarifaiController() {
+            clarifai = new ClarifaiHandler();
+        }
 
         // GET api/values/5
         [HttpGet]
-        public async Task GetAsync(string search)
+        public async Task GetAsync(string concept)
         {
-            ClarifaiClient client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
-            var response = await client.SearchInputs(SearchBy.ConceptName("breakfast"))
-            .Page(1)
-            .ExecuteAsync();
-
-            Console.Write(response);
-         
+            var response = clarifai.SearchByConcept("breakfast");
+            var x = JsonConvert.SerializeObject((Object)response);
+            Console.Write(JsonConvert.DeserializeObject(x));
         }
 
         [HttpGet("{id}")]

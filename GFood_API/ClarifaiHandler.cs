@@ -11,17 +11,14 @@ namespace GFood_API
     {
         ClarifaiClient client;
 
-        public async Task Main()
-        {
-            client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
-  
-        }
 
-        public async Task searchByConcept(string concept) {
-            client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
-            await client.SearchInputs(SearchBy.ConceptName(concept))
+        public async Task<ClarifaiResponse<SearchInputsResult>> SearchByConcept(string concept) {
+            ClarifaiClient client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
+            var response = await client.SearchInputs(SearchBy.ConceptName("breakfast"))
             .Page(1)
             .ExecuteAsync();
+            return response;
         }
+
     }
 }
