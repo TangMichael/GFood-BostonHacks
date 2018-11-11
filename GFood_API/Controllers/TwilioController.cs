@@ -13,10 +13,10 @@ namespace GFood_API.Controllers
     [ApiController]
     public class TwilioController : Controller
     {
-        TwilioServices services;
+        TwilioServices service;
 
         public TwilioController() {
-            services = new TwilioServices();
+            service = new TwilioServices();
         }
 
         public ActionResult Index()
@@ -30,12 +30,12 @@ namespace GFood_API.Controllers
         {
             throw new NotImplementedException();
         }
-    }
 
-    [HttpGet]
-        public void sendSMS(string location)
+        [HttpGet]
+        public void sms(string location)
         {
-            services.sendSMS(location);
+            service.sendSMS(location);
         }
     }
+
 }
