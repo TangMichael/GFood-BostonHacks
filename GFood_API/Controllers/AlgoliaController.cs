@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GFood_API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AlgoliaController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        AlgoliaService service;
+
+        public AlgoliaController()
         {
-            return View();
+            service = new AlgoliaService();
         }
+
+        //photo id
+        [HttpGet("{id}")]
+        public JObject GetBusiness(string photoID)
+        {
+            var businessID = service.GetBusinessIDFromPhotoID(photoID);
+            return service.GetBusinessFromID(businessID);
+        }
+
     }
 }
