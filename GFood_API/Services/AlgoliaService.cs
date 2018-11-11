@@ -12,7 +12,7 @@ namespace GFood_API
 {
     public class AlgoliaService
     {
-   
+
         AlgoliaClient client;
         Index index;
 
@@ -53,7 +53,7 @@ namespace GFood_API
 
             foreach (JToken hits in jObject.SelectToken("hits"))
             {
-               businessID = (string)hits.SelectToken("business_id");
+                businessID = (string)hits.SelectToken("business_id");
             }
             return businessID;
         }
@@ -69,7 +69,7 @@ namespace GFood_API
             );
         }
 
-        public static List<string> GetPictureLocations()
+        public  List<string> GetIDfromURL(List<string> urlString)
         {
             List<string> url_list = ClarifaiController.url_list;
             string[] x = null;
@@ -77,13 +77,21 @@ namespace GFood_API
 
             for (var i = 0; i < url_list.Count; i++)
             {
-
                 x = new Uri(url_list[i]).Segments;
                 pictureIds.Add(x[2].Substring(0, x[2].Length - 1));
             }
             return pictureIds;
         }
 
+        public string AddressFromObject(JObject jObject) {
+            string address = "";
+            foreach (JToken hits in jObject.SelectToken("hits"))
+            {
+                string url = (string)hits.SelectToken("input.data.image.url");
+                address = url;
+            }
+            return address;
+        }
 
     }
     }

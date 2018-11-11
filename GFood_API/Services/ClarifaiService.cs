@@ -37,7 +37,8 @@ namespace GFood_API
             return urlList;
         }
 
-        public async Task UrlWithAddressAsync(string concept, JObject jObject) {
+
+        public async Task UrlWithAddressAsync(string concept) {
             var response = await SearchByConcept(concept);
             var x = JsonConvert.SerializeObject((Object)response);
             // get the response body and transform it into temp object
@@ -45,7 +46,11 @@ namespace GFood_API
             // access the url for the first hit
             // need to do for loop to get all the hits
             List<string> url = JObjectToURL(z);
+            List<string> url_id = algoliaService.GetIDfromURL(url);
 
+            foreach (string id in url_id){
+                algoliaService.GetBusinessFromID(id);
+            }
 
         }
         

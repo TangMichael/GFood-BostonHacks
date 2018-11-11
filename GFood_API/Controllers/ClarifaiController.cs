@@ -22,30 +22,23 @@ namespace GFood_API.Controllers
    // [EnableCors(origins: "http://localhost:3000")]
     public class ClarifaiController : Controller
     {
-        ClarifaiHandler clarifai;
-<<<<<<< HEAD
+        ClarifaiService clarifai;
+        AlgoliaService algoliaService;
         public static List<string> url_list;
-        public ClarifaiController() {
-=======
-
+       
         public ClarifaiController()
         {
->>>>>>> f85e245b24aeda5c5872ec11538814b793e4d24f
-            clarifai = new ClarifaiHandler();
+            clarifai = new ClarifaiService();
+            algoliaService = new AlgoliaService();
         }
 
         // GET api/values/5
         [HttpPost]
-        public async Task<List<string>> GetAsync([FromBody]string search)
+        public JsonResult GetJson([FromBody]string search)
         {
-            var response = await clarifai.SearchByConcept(search);
-            var x = JsonConvert.SerializeObject((Object)response);
-            // get the response body and transform it into temp object
-            var z = JObject.Parse(response.RawBody);
-            // access the url for the first hit
-            // need to do for loop to get all the hits
-            url_list = clarifai.JObjectToURL(z);
-            return url_list;
+
+            clarifai.UrlWithAddressAsync(search, )
+
 
         }
     }

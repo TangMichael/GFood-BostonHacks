@@ -12,14 +12,13 @@ namespace GFood_API.Controllers
     [ApiController]
     public class AlgoliaController : Controller
     {
-<<<<<<< HEAD
         [HttpGet]
         public List<string> getUrl()
         {
             return AlgoliaService.GetPictureLocations();
         }
 
-=======
+
         AlgoliaService service;
 
         public AlgoliaController()
@@ -35,6 +34,5 @@ namespace GFood_API.Controllers
             return service.GetBusinessFromID(businessID);
         }
 
->>>>>>> f85e245b24aeda5c5872ec11538814b793e4d24f
     }
 }
