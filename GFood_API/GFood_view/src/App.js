@@ -3,7 +3,6 @@ import './App.css';
 import { Search } from './components/Search';
 import { Spinwheel } from './components/Spinwheel';
 import { PictureContainer } from './container/picture-container/PictureContainer';
-import TransitionExampleSingleExplorer from './components/BusinessDetails';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +13,8 @@ class App extends Component {
       currentImage: 0,
       search: "",
       isActive: false,
-      bool: false
+      bool: false,
+      visible: false
     }
 
     this.handleAccept = this.handleAccept.bind(this);
@@ -28,6 +28,8 @@ class App extends Component {
     this.setState({ search: e.target.value })
   }
 
+  handleVisibility = () => this.setState({ visible: !this.state.visible })
+ 
   handleSearch() {
     this.setState({
       isActive: true
@@ -55,7 +57,7 @@ class App extends Component {
     let x = "Here is the address of "+ this.state.businessDetails[this.state.currentImage].name.toString() + ": \n" + this.state.businessDetails[this.state.currentImage].address.toString() + "\n" 
     + this.state.businessDetails[this.state.currentImage].city.toString() + ", " + this.state.businessDetails[this.state.currentImage].state.toString() + " " + this.state.businessDetails[this.state.currentImage].postal_code 
     + "\n Thank you for using GFood!"; 
-    
+
    fetch("https://localhost:5001/api/twilio", {
      headers: {
       'Accept': 'application/json',
@@ -80,8 +82,8 @@ class App extends Component {
   }
 
   render() {
-    const picture = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>Please search something</h1> : 
-    <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.state.businessDetails[this.state.currentImage]} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
+    const picture = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>What would you like to eat today?</h1> : 
+    <PictureContainer visible={this.state.visible} onDetail={this.handleVisibility} onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.state.businessDetails[this.state.currentImage]} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
 
     return (
       <div className="App">

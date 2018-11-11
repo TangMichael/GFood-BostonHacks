@@ -1,37 +1,21 @@
-import React, { Component } from 'react'
-import { Form, Grid, Image, Transition, Button , Segment} from 'semantic-ui-react'
+import React from 'react'
+import { Transition, Segment} from 'semantic-ui-react'
 import './../container/picture-container/pictureContainer.css'
-const transitions = [
-  'fly down'
-]
-//const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
-export default class BusinessDetails extends Component {
+export const BusinessDetails = props => {
     
-  state = { animation: transitions[0], duration: 1500, visible: false}
-
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleVisibility = () => this.setState({ visible: !this.state.visible })
-    
-  render() {
-    const { animation, duration, visible } = this.state
     return (
         <div>
-            <div>
-                <Button onClick={this.handleVisibility}>Details</Button><br></br>
-            </div>
-            <Transition.Group animation={animation} duration={duration}>
-             {visible &&
+            <Transition.Group animation='fly down' duration='1500'>
+             {props.isVisible &&
                 <Segment raised className="seg">
-                 Restaurant Name: {this.props.details.name} <br></br>
-                 {this.props.details.address} <br></br>
-                 {this.props.details.city}, {this.props.details.state} <br></br>
-                 {this.props.details.postal_code} <br></br>
-                 Rating: {this.props.details.stars} / 5 ({this.props.details.review_count} reviews)
+                 Restaurant Name: {props.details.name} <br></br>
+                 {props.details.address} <br></br>
+                 {props.details.city}, {props.details.state} <br></br>
+                 {props.details.postal_code} <br></br>
+                 Rating: {props.details.stars} / 5 ({props.details.review_count} reviews)
              </Segment>}
             </Transition.Group>
         </div>
     )
-  }
 }
