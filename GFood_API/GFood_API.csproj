@@ -20,4 +20,7 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="TwilioServices.cs" />
+  </ItemGroup>
 </Project>
