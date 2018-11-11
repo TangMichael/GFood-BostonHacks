@@ -34,7 +34,7 @@ class App extends Component {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify(this.state.search)
+      body: JSON.stringify(this.state.search.toLowerCase())
       }).then(res => res.json())
         .then(body => {
           console.log(body[0])
