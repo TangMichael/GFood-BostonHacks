@@ -3,6 +3,7 @@ import './App.css';
 import { Search } from './components/Search';
 import { Spinwheel } from './components/Spinwheel';
 import { PictureContainer } from './container/picture-container/PictureContainer';
+import FadeText from "./components/Fade";
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class App extends Component {
       search: "",
       isActive: false,
       bool: false,
-      visible: false
+      visible: false,
+        text: "What would you like to eat today?",
     }
 
     this.handleAccept = this.handleAccept.bind(this);
@@ -82,7 +84,7 @@ class App extends Component {
   }
 
   render() {
-    const picture = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>What would you like to eat today?</h1> : 
+    const picture = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <FadeText text={this.state.text}/>  :
     <PictureContainer visible={this.state.visible} onDetail={this.handleVisibility} onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.state.businessDetails[this.state.currentImage]} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
 
     return (
