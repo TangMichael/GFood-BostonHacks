@@ -26,7 +26,6 @@ class App extends Component {
 }
 
   handleSearch() {
-    // console.log(this.state.search);
     fetch("https://localhost:5001/api/clarifai", {
       headers: {
         'Accept': 'application/json',
@@ -37,7 +36,10 @@ class App extends Component {
   }).then(
     res =>
       res.json()).then(body => 
-        this.setState({imageURL:body})
+        this.setState({
+          imageURL: body,
+          currentImage: 0
+        })
       )
   }
 
