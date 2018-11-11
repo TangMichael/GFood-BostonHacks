@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Search } from './components/Search';
+import { Spinwheel } from './components/Spinwheel';
 import { PictureContainer } from './container/picture-container/PictureContainer';
 import TransitionExampleSingleExplorer from './components/BusinessDetails';
 
@@ -12,6 +13,7 @@ class App extends Component {
       businessDetails: [],
       currentImage: 0,
       search: "",
+      isActive: false,
       bool: false
     }
 
@@ -27,7 +29,9 @@ class App extends Component {
   }
 
   handleSearch() {
-
+    this.setState({
+      isActive: true
+    })
     fetch("https://localhost:5001/api/clarifai", {
       headers: {
         'Accept': 'application/json',
@@ -40,14 +44,15 @@ class App extends Component {
           console.log(body[0])
           this.setState({
             businessDetails: body,
-            currentImage: 0
+            currentImage: 0,
+            isActive: false
           });
         })
   }
 
   handleAccept() {
     console.log(this.state.businessDetails[this.state.currentImage].toString())
-   var x = "city: "+ this.state.businessDetails[this.state.currentImage].city.toString() + " Address: " + this.state.businessDetails[this.state.currentImage].address.toString()
+    let x = "city: "+ this.state.businessDetails[this.state.currentImage].city.toString() + " Address: " + this.state.businessDetails[this.state.currentImage].address.toString()
     + " state: " +  this.state.businessDetails[this.state.currentImage].state.toString() + " The restaurant is " + this.state.businessDetails[this.state.currentImage].name.toString()
    fetch("https://localhost:5001/api/twilio", {
      headers: {
@@ -80,6 +85,7 @@ class App extends Component {
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
         {picture}
+        <Spinwheel active={this.state.isActive}></Spinwheel>
       </div>
     );
   }
