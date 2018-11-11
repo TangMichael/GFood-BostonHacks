@@ -20,9 +20,9 @@ namespace GFood_API.Controllers
         }
 
         [HttpPost]
-        public void sms(string location, string phone)
+        public void sms([FromBody]string location)
         {
-            service.setToPhone(phone);
+            service.setToPhone("+15142418022");
             service.sendSMS(location);
         }
     }

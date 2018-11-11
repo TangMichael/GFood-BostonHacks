@@ -14,7 +14,7 @@ namespace GFood_API
         const string authToken = "c02f00b416797f886f7dda8493eeaddf";
 
         public string fromPhone = "+16042458428";
-        public string toPhone = "+14389854760"; 
+        public string toPhone = ""; 
 
         public TwilioServices()
         {
