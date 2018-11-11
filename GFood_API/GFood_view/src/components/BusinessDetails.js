@@ -6,9 +6,9 @@ const transitions = [
 ]
 const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
-export default class TransitionExampleSingleExplorer extends Component {
+export default class BusinessDetails extends Component {
     
-  state = { animation: transitions[0], duration: 1500, visible: true }
+  state = { animation: transitions[0], duration: 1500, visible: false}
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -22,7 +22,7 @@ export default class TransitionExampleSingleExplorer extends Component {
             <Button onClick={this.handleVisibility}>Details</Button>
             <Transition.Group animation={animation} duration={duration}>
              {visible && <p>
-                 Address: {this.props.details === undefined ? "" : this.props.details.name}
+                 Address: {this.props.onMore.name}
              </p>}
             </Transition.Group>
         </div>

@@ -61,7 +61,7 @@ class App extends Component {
 
   render() {
     const x = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>Please search something</h1> : 
-    <div><PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>        <TransitionExampleSingleExplorer details={this.state.businessDetails[this.state.currentImage]}></TransitionExampleSingleExplorer></div> 
+    <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.state.businessDetails[this.state.currentImage]} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
 
     return (
       <div className="App">
