@@ -19,8 +19,9 @@ namespace GFood_API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<string> Get(String id)
         {
+            Console.Write(id);
             return "value";
         }
 

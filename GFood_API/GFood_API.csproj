@@ -15,7 +15,12 @@
     <PackageReference Include="Algolia.Search" Version="5.2.0" />
     <PackageReference Include="Algolia.Analytics" Version="1.0.0" />
     <PackageReference Include="Clarifai" Version="1.2.0" />
+<<<<<<< HEAD
+    <PackageReference Include="Twilio" Version="5.21.0" />
+    <PackageReference Include="Twilio.AspNet.Mvc" Version="5.20.1" />
+=======
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.6" />
+>>>>>>> f85e245b24aeda5c5872ec11538814b793e4d24f
   </ItemGroup>
 
 </Project>
