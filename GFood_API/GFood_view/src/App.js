@@ -60,11 +60,13 @@ class App extends Component {
   }
 
   render() {
+    const x = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>Please search something</h1> : 
+    <div><PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>        <TransitionExampleSingleExplorer details={this.state.businessDetails[this.state.currentImage]}></TransitionExampleSingleExplorer></div> 
+
     return (
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
-        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.businessDetails[this.state.currentImage] === undefined ? "" : this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
-        <TransitionExampleSingleExplorer details={this.state.businessDetails === undefined ? [{name: 'wsh'}] : this.state.businessDetails}></TransitionExampleSingleExplorer>
+        {x}
       </div>
     );
   }

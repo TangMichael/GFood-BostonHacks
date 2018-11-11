@@ -16,14 +16,13 @@ export default class TransitionExampleSingleExplorer extends Component {
     
   render() {
     const { animation, duration, visible } = this.state
-    const a = this.props.details;
-    console.log(a);
+
     return (
         <div>
             <Button onClick={this.handleVisibility}>Details</Button>
             <Transition.Group animation={animation} duration={duration}>
              {visible && <p>
-                 Address: {this.props.details}
+                 Address: {this.props.details === undefined ? "" : this.props.details.name}
              </p>}
             </Transition.Group>
         </div>
