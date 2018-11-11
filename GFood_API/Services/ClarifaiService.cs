@@ -51,7 +51,8 @@ namespace GFood_API
             JObject jObject = new JObject();
 
             for (int i = 0; i < url.Count; i++) {
-                jObject = algoliaService.GetBusinessFromID(url_id[i]);
+               string business_id = algoliaService.GetBusinessIDFromPhotoID(url_id[i]);
+                jObject = algoliaService.GetBusinessFromID(business_id);
                 jObject.Add(new JProperty(url[i], new JObject()));
             }
 
