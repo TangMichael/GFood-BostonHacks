@@ -5,6 +5,7 @@ using Clarifai.API;
 using Clarifai.API.Responses;
 using Clarifai.DTOs.Inputs;
 using Clarifai.DTOs.Searches;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace GFood_API
@@ -12,15 +13,16 @@ namespace GFood_API
     public class ClarifaiService
     {
         ClarifaiClient client;
+        AlgoliaService algoliaService;
         private const string API_KEY = "dfa26cc77ace4f539eff32c420226fbc";
 
         public ClarifaiService() {
-
+            client = new ClarifaiClient(API_KEY);
+            algoliaService = new AlgoliaService();
         }
 
         public async Task<ClarifaiResponse<SearchInputsResult>> SearchByConcept(string concept) {
-            ClarifaiClient client = new ClarifaiClient(API_KEY);
-            var response = await client.SearchInputs(SearchBy.ConceptName("breakfast"))
+            var response = await client.SearchInputs(SearchBy.ConceptName(concept))
             .Page(1)
             .ExecuteAsync();
             return response;
@@ -35,9 +37,18 @@ namespace GFood_API
             return urlList;
         }
 
-        public void UrlWithAddress(List<string> urlList, JObject jObject) {
+        public async Task UrlWithAddressAsync(string concept, JObject jObject) {
+            var response = await SearchByConcept(concept);
+            var x = JsonConvert.SerializeObject((Object)response);
+            // get the response body and transform it into temp object
+            var z = JObject.Parse(response.RawBody);
+            // access the url for the first hit
+            // need to do for loop to get all the hits
+            List<string> url = JObjectToURL(z);
+
 
         }
+        
 
     }
 }

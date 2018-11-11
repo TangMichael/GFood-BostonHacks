@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "GFood_API", "GFood_API\GFood_API.csproj", "{F88B8E01-86B5-45A6-87A9-CC3C611031F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_API", "GFood_API\GFood_API.csproj", "{9A89442E-71F8-41F5-92BC-BB967A19BAEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F88B8E01-86B5-45A6-87A9-CC3C611031F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F88B8E01-86B5-45A6-87A9-CC3C611031F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F88B8E01-86B5-45A6-87A9-CC3C611031F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F88B8E01-86B5-45A6-87A9-CC3C611031F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A89442E-71F8-41F5-92BC-BB967A19BAEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A89442E-71F8-41F5-92BC-BB967A19BAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A89442E-71F8-41F5-92BC-BB967A19BAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A89442E-71F8-41F5-92BC-BB967A19BAEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
