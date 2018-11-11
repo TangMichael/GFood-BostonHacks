@@ -10,6 +10,7 @@ using Clarifai.DTOs.Searches;
 
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,9 +31,14 @@ namespace GFood_API.Controllers
             var response = await client.SearchInputs(SearchBy.ConceptName("breakfast"))
             .Page(1)
             .ExecuteAsync();
+            // get the response body and transform it into temp object
+            var z = JObject.Parse(response.RawBody);
+            // access the url for the first hit
+            // need to do for loop to get all the hits
+            z["hits"][0]["input"]["data"]["image"]["url"].ToString();
 
-            Console.Write(response);
-         
+
+
         }
 
         [HttpGet("{id}")]
