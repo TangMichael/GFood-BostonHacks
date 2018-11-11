@@ -87,8 +87,7 @@ namespace GFood_API
             string address = "";
             foreach (JToken hits in jObject.SelectToken("hits"))
             {
-                string url = (string)hits.SelectToken("input.data.image.url");
-                address = url;
+                 address = (string)hits.SelectToken("address");
             }
             return address;
         }

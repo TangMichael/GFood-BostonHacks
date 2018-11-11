@@ -12,19 +12,18 @@ namespace GFood_API.Controllers
     [ApiController]
     public class AlgoliaController : Controller
     {
-        [HttpGet]
-        public List<string> getUrl()
-        {
-            return AlgoliaService.GetPictureLocations();
-        }
-
-
         AlgoliaService service;
 
         public AlgoliaController()
         {
             service = new AlgoliaService();
         }
+
+        //[HttpGet]
+        //public List<string> getUrl()
+        //{
+        //    return service.GetIDfromURL();
+        //}
 
         //photo id
         [HttpGet("{id}")]
