@@ -23,7 +23,7 @@ export default class TransitionExampleSingleExplorer extends Component {
             <Button onClick={this.handleVisibility}>Details</Button>
             <Transition.Group animation={animation} duration={duration}>
              {visible && <p>
-                 Address: {this.props.details[0].name}
+                 Address: {this.props.details}
              </p>}
             </Transition.Group>
         </div>

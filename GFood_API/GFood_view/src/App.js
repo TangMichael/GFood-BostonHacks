@@ -36,12 +36,10 @@ class App extends Component {
       body: JSON.stringify(this.state.search)
       }).then(res => res.json())
         .then(body => {
-          //console.log(body);
           this.setState({
             businessDetails: body,
             currentImage: 0
           });
-          console.log(this.state.businessDetails);
         })
   }
 
@@ -66,7 +64,7 @@ class App extends Component {
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
         <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.businessDetails[this.state.currentImage] === undefined ? "" : this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
-        <TransitionExampleSingleExplorer details={this.state.businessDetails}></TransitionExampleSingleExplorer> : ""}
+        <TransitionExampleSingleExplorer details={this.state.businessDetails === undefined ? [{name: 'wsh'}] : this.state.businessDetails}></TransitionExampleSingleExplorer>
       </div>
     );
   }

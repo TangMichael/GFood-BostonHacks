@@ -38,7 +38,7 @@ namespace GFood_API
         }
 
 
-        public async Task<string> UrlWithAddressAsync(string concept) {
+        public async Task<List<JObject>> UrlWithAddressAsync(string concept) {
             var response = await SearchByConcept(concept);
             var x = JsonConvert.SerializeObject((Object)response);
             // get the response body and transform it into temp object
@@ -65,7 +65,7 @@ namespace GFood_API
             // ((JObject)(jObject[i])).Add(new JProperty(url[i], new JObject()));
             //  }
 
-            return JsonConvert.SerializeObject(business_details);
+            return business_details;
 
         }
 
