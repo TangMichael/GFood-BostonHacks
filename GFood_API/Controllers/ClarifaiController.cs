@@ -25,7 +25,7 @@ namespace GFood_API.Controllers
 
         // GET api/values/5
         [HttpGet]
-        public async Task GetAsync(string search)
+        public async Task<string> GetAsync(string search)
         {
             ClarifaiClient client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
             var response = await client.SearchInputs(SearchBy.ConceptName("breakfast"))
@@ -35,7 +35,7 @@ namespace GFood_API.Controllers
             var z = JObject.Parse(response.RawBody);
             // access the url for the first hit
             // need to do for loop to get all the hits
-            z["hits"][0]["input"]["data"]["image"]["url"].ToString();
+          return z["hits"][0]["input"]["data"]["image"]["url"].ToString();
 
 
 
