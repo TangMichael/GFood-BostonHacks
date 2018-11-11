@@ -18,6 +18,7 @@ class App extends Component {
     this.handleReject = this.handleReject.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleMoreDetail = this.handleMoreDetail.bind(this);
   }
 
   handleChange(e) {
@@ -25,10 +26,25 @@ class App extends Component {
 }
 
   handleSearch() {
-    console.log(this.state.search);
-    this.setState({
-      imageURL: ['https://s3-media2.fl.yelpcdn.com/bphoto/b2svNDHSUotsLa5Dt5rLGA/o.jpg', 'https://www.concordia.ca/etc/designs/concordia/resources/file.jpg?did=2748&w=303&s=PROD']
-    })
+    fetch("https://localhost:5001/api/clarifai", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(this.state.search)
+  }).then(
+    res =>
+      res.json()).then(body => 
+        this.setState({
+          imageURL: body,
+          currentImage: 0
+        })
+      )
+  }
+
+  handleAccept() {
+    console.log('Accepted.');
   }
 
   handleReject() {
@@ -39,16 +55,15 @@ class App extends Component {
     });
   }
 
-  handleAccept() {
-    console.log('Accepted.');
+  handleMoreDetail() {
+    console.log('Display more detail.')
   }
-
 
   render() {
     return (
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
-        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
+        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
       </div>
     );
   }
