@@ -33,10 +33,10 @@ namespace GFood_API.Controllers
         }
 
         // GET api/values/5
-        [HttpGet]
-        public Task Get()
+        [HttpPost]
+        public Task<string> Get([FromBody]string search)
         {
-            return clarifai.UrlWithAddressAsync("breakfast");
+            return clarifai.UrlWithAddressAsync(search);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace GFood_API
         }
 
 
-        public async Task<JObject> UrlWithAddressAsync(string concept) {
+        public async Task<string> UrlWithAddressAsync(string concept) {
             var response = await SearchByConcept(concept);
             var x = JsonConvert.SerializeObject((Object)response);
             // get the response body and transform it into temp object
@@ -47,16 +47,25 @@ namespace GFood_API
             // need to do for loop to get all the hits
             List<string> url = JObjectToURL(z);
             List<string> url_id = algoliaService.GetIDfromURL(url);
-            List<string> address = new List<string>();
+            List<JObject> business_details = new List<JObject>();
             JObject jObject = new JObject();
 
             for (int i = 0; i < url.Count; i++) {
-               string business_id = algoliaService.GetBusinessIDFromPhotoID(url_id[i]);
+   
+                string business_id = algoliaService.GetBusinessIDFromPhotoID(url_id[i]);
                 jObject = algoliaService.GetBusinessFromID(business_id);
-                jObject.Add(new JProperty(url[i], new JObject()));
+                var item = JObject.Parse(jObject["hits"][0].ToString());
+                item["url"] = url[i];
+                business_details.Add(item);
+
             }
 
-            return jObject;
+            // for (int i = 0; i < url.Count; i++){
+            //jObject["hits"][i].AddAfterSelf(url);
+            // ((JObject)(jObject[i])).Add(new JProperty(url[i], new JObject()));
+            //  }
+
+            return JsonConvert.SerializeObject(business_details);
 
         }
 
