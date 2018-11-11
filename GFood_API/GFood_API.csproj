@@ -14,6 +14,7 @@
     <PackageReference Include="Algolia.Search" Version="5.2.0" />
     <PackageReference Include="Algolia.Analytics" Version="1.0.0" />
     <PackageReference Include="Clarifai" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.6" />
   </ItemGroup>
 
 </Project>

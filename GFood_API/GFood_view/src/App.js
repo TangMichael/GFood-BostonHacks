@@ -25,10 +25,19 @@ class App extends Component {
 }
 
   handleSearch() {
-    console.log(this.state.search);
-    this.setState({
-      imageURL: ['https://s3-media2.fl.yelpcdn.com/bphoto/b2svNDHSUotsLa5Dt5rLGA/o.jpg', 'https://www.concordia.ca/etc/designs/concordia/resources/file.jpg?did=2748&w=303&s=PROD']
-    })
+    // console.log(this.state.search);
+    fetch("https://localhost:5001/api/clarifai", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(this.state.search)
+  }).then(
+    res =>
+      res.json()).then(body => 
+        this.setState({imageURL:body})
+      )
   }
 
   handleReject() {

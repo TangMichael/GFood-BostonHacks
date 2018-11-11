@@ -18,6 +18,7 @@ namespace GFood_API
     {
         public Startup(IConfiguration configuration)
         {
+
             Configuration = configuration;
             AlgoliaClient client = new AlgoliaClient("59HBV2PWON", "9d1d44d31f066fa800a674eb1eb076d4");
             Index index = client.InitIndex("yelp");
@@ -28,12 +29,19 @@ namespace GFood_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(builder => builder
+                        .WithOrigins("https://localhost:3000", "https://localhost:5001")
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .WithHeaders("Accept", "Content-Type", "Origin", "X-My-Header"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
