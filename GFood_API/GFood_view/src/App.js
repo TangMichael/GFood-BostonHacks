@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Search from './components/search';
-import { PictureContainer } from './container/picture-container/PictureContainer';
+import { Search }  from './components/search';
+import PictureContainer  from './container/picture-container/PictureContainer';
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       id: [],
       imageURL: [],
-      currentImage: 0
+      currentImage: 0,
+      search: ""
     }
 
     this.handleAccept = this.handleAccept.bind(this);
@@ -18,8 +19,12 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
+  handleChange = (e) => {
+    this.setState({search: e.target.value})
+}
+
   handleSearch() {
-    
+    console.log(this.state.search);
   }
 
   handleReject() {
@@ -34,7 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Search></Search>
+        <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
         <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
       </div>
     );
