@@ -11,7 +11,8 @@ class App extends Component {
       id: [],
       businessDetails: [],
       currentImage: 0,
-      search: ""
+      search: "",
+      bool: false
     }
 
     this.handleAccept = this.handleAccept.bind(this);
@@ -36,6 +37,7 @@ class App extends Component {
       body: JSON.stringify(this.state.search)
       }).then(res => res.json())
         .then(body => {
+          console.log(body[0])
           this.setState({
             businessDetails: body,
             currentImage: 0
@@ -51,7 +53,8 @@ class App extends Component {
     console.log('Rejected.');
     let nextImagePosition = this.state.currentImage + 1;
     this.setState({
-      currentImage: nextImagePosition
+      currentImage: nextImagePosition,
+      bool: false
     });
   }
 
@@ -60,13 +63,13 @@ class App extends Component {
   }
 
   render() {
-    const x = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>Please search something</h1> : 
+    const picture = (this.state.businessDetails === undefined|| this.state.businessDetails[this.state.currentImage] === undefined ) ? <h1>Please search something</h1> : 
     <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.state.businessDetails[this.state.currentImage]} foodImg={this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
 
     return (
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
-        {x}
+        {picture}
       </div>
     );
   }

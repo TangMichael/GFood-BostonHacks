@@ -22,7 +22,11 @@ export default class BusinessDetails extends Component {
             <Button onClick={this.handleVisibility}>Details</Button>
             <Transition.Group animation={animation} duration={duration}>
              {visible && <p>
-                 Address: {this.props.onMore.name}
+                 Restaurant Name: {this.props.details.name} <br></br>
+                 {this.props.details.address} <br></br>
+                 {this.props.details.city}, {this.props.details.state} <br></br>
+                 {this.props.details.postal_code} <br></br>
+                 Rating: {this.props.details.stars} / 5 ({this.props.details.review_count} reviews)
              </p>}
             </Transition.Group>
         </div>

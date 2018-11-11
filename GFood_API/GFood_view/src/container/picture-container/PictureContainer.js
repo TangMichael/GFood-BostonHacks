@@ -12,7 +12,7 @@ export const PictureContainer = props => {
         <Picture foodPic={props.foodImg}></Picture>
         <div className="bottom">
         <AcceptButton onAccept={props.onAccept}></AcceptButton>
-        <BusinessDetails onMore={props.onMore}></BusinessDetails>
+        <BusinessDetails details={props.onMore}></BusinessDetails>
         <RejectButton onReject={props.onReject}></RejectButton>
         </div>
       </div>
