@@ -11,8 +11,7 @@ namespace GFood_API
     public class TwilioServices
     {
    
-         static void Main(string[] args)
-        {
+       public static void  sms(string location) { 
             // Find your Account Sid and Token at twilio.com/console
             const string accountSid = "ACea129922a894f9e4711ca95c4f6b3e7c";
             const string authToken = "c02f00b416797f886f7dda8493eeaddf";
@@ -20,9 +19,9 @@ namespace GFood_API
             TwilioClient.Init(accountSid, authToken);
 
             var message = MessageResource.Create(
-                body: "Join Earth's mightiest heroes. Like Kevin Bacon.",
+                body: "Restaurant is located at " + location,
                 from: new Twilio.Types.PhoneNumber("+16042458428"),
-                to: new Twilio.Types.PhoneNumber("+15142418022")
+                to: new Twilio.Types.PhoneNumber("+14389854760")
             );
 
             Console.WriteLine(message.Sid);
