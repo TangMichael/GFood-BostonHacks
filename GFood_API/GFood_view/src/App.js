@@ -52,8 +52,10 @@ class App extends Component {
 
   handleAccept() {
     console.log(this.state.businessDetails[this.state.currentImage].toString())
-    let x = "city: "+ this.state.businessDetails[this.state.currentImage].city.toString() + " Address: " + this.state.businessDetails[this.state.currentImage].address.toString()
-    + " state: " +  this.state.businessDetails[this.state.currentImage].state.toString() + " The restaurant is " + this.state.businessDetails[this.state.currentImage].name.toString()
+    let x = "Here is the address of "+ this.state.businessDetails[this.state.currentImage].name.toString() + ": \n" + this.state.businessDetails[this.state.currentImage].address.toString() + "\n" 
+    + this.state.businessDetails[this.state.currentImage].city.toString() + ", " + this.state.businessDetails[this.state.currentImage].state.toString() + " " + this.state.businessDetails[this.state.currentImage].postal_code 
+    + "\n Thank you for using GFood!"; 
+    
    fetch("https://localhost:5001/api/twilio", {
      headers: {
       'Accept': 'application/json',
