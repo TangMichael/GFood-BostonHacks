@@ -8,12 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GFood_API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AlgoliaController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        [HttpGet]
+        public List<string> getUrl()
         {
-            return View();
+            return AlgoliaService.GetPictureLocations();
         }
+
     }
 }

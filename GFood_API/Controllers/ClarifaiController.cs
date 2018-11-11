@@ -21,7 +21,7 @@ namespace GFood_API.Controllers
     public class ClarifaiController : Controller
     {
         ClarifaiHandler clarifai;
-
+        public static List<string> url_list;
         public ClarifaiController() {
             clarifai = new ClarifaiHandler();
         }
@@ -36,7 +36,9 @@ namespace GFood_API.Controllers
             var z = JObject.Parse(response.RawBody);
             // access the url for the first hit
             // need to do for loop to get all the hits
-            return clarifai.JObjectToURL(z);
+            url_list = clarifai.JObjectToURL(z);
+            return url_list;
+
         }
 
         [HttpGet("{id}")]
