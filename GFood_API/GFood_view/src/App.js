@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Search }  from './components/search';
-import { PictureContainer }  from './container/picture-container/PictureContainer';
+import { Search } from './components/Search';
+import { PictureContainer } from './container/picture-container/PictureContainer';
+import TransitionExampleSingleExplorer from './components/BusinessDetails';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: [],
-      imageURL: [],
+      businessDetails: [],
       currentImage: 0,
       search: ""
     }
@@ -21,10 +22,11 @@ class App extends Component {
   }
 
   handleChange(e) {
-    this.setState({search: e.target.value})
-}
+    this.setState({ search: e.target.value })
+  }
 
   handleSearch() {
+
     fetch("https://localhost:5001/api/clarifai", {
       headers: {
         'Accept': 'application/json',
@@ -32,14 +34,15 @@ class App extends Component {
       },
       method: "POST",
       body: JSON.stringify(this.state.search)
-  }).then(
-    res =>
-      res.json()).then(body => 
-        this.setState({
-          imageURL: body,
-          currentImage: 0
+      }).then(res => res.json())
+        .then(body => {
+          //console.log(body);
+          this.setState({
+            businessDetails: body,
+            currentImage: 0
+          });
+          console.log(this.state.businessDetails);
         })
-      )
   }
 
   handleAccept() {
@@ -62,7 +65,8 @@ class App extends Component {
     return (
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
-        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
+        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} onMore={this.handleMoreDetail} foodImg={this.state.businessDetails[this.state.currentImage] === undefined ? "" : this.state.businessDetails[this.state.currentImage].url}></PictureContainer>
+        <TransitionExampleSingleExplorer details={this.state.businessDetails}></TransitionExampleSingleExplorer> : ""}
       </div>
     );
   }
