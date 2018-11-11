@@ -71,13 +71,12 @@ namespace GFood_API
 
         public  List<string> GetIDfromURL(List<string> urlString)
         {
-            List<string> url_list = ClarifaiController.url_list;
             string[] x = null;
             List<string> pictureIds = new List<string>();
 
-            for (var i = 0; i < url_list.Count; i++)
+            for (var i = 0; i < urlString.Count; i++)
             {
-                x = new Uri(url_list[i]).Segments;
+                x = new Uri(urlString[i]).Segments;
                 pictureIds.Add(x[2].Substring(0, x[2].Length - 1));
             }
             return pictureIds;
