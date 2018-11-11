@@ -31,7 +31,7 @@ namespace GFood_API.Controllers
 
         // GET api/values/5
         [HttpPost]
-        public async Task<string> GetAsync([FromBody]string search)
+        public async Task<List<string>> GetAsync([FromBody]string search)
         {
             var response = await clarifai.SearchByConcept(search);
             var x = JsonConvert.SerializeObject((Object)response);
@@ -39,10 +39,7 @@ namespace GFood_API.Controllers
             var z = JObject.Parse(response.RawBody);
             // access the url for the first hit
             // need to do for loop to get all the hits
-            string[] arr = new string[1];
-            arr[0] = z["hits"][0]["input"]["data"]["image"]["url"].ToString();
-
-            return JsonConvert.SerializeObject(arr);
+            return clarifai.JObjectToURL(z);
         }
     }
 }
