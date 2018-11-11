@@ -17,7 +17,7 @@ namespace GFood_API
   
         }
 
-        public async ClarifaiResponse<string> searchByConcept(string concept) {
+        public async Task searchByConcept(string concept) {
             client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
             await client.SearchInputs(SearchBy.ConceptName(concept))
             .Page(1)
