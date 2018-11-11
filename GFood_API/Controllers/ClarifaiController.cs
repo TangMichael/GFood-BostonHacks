@@ -10,6 +10,7 @@ using Clarifai.DTOs.Searches;
 
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,9 +30,24 @@ namespace GFood_API.Controllers
         [HttpGet]
         public async Task GetAsync(string concept)
         {
+<<<<<<< HEAD
             var response = clarifai.SearchByConcept("breakfast");
             var x = JsonConvert.SerializeObject((Object)response);
             Console.Write(JsonConvert.DeserializeObject(x));
+=======
+            ClarifaiClient client = new ClarifaiClient("dfa26cc77ace4f539eff32c420226fbc");
+            var response = await client.SearchInputs(SearchBy.ConceptName("breakfast"))
+            .Page(1)
+            .ExecuteAsync();
+            // get the response body and transform it into temp object
+            var z = JObject.Parse(response.RawBody);
+            // access the url for the first hit
+            // need to do for loop to get all the hits
+            z["hits"][0]["input"]["data"]["image"]["url"].ToString();
+
+
+
+>>>>>>> ef83e94affe2012396534c3b0095507be8c31c86
         }
 
         [HttpGet("{id}")]
