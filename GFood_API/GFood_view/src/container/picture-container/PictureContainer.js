@@ -4,17 +4,19 @@ import { AcceptButton } from './../../components/picture/AcceptButton'
 import { RejectButton } from './../../components/picture/RejectButton'
 import './pictureContainer.css';
 import BusinessDetails from '../../components/BusinessDetails';
+import CardContainer from "./CardContainer";
 
 export const PictureContainer = props => {
     return (
-      
-      <div className="container">
-        <Picture foodPic={props.foodImg}></Picture>
-        <div className="bottom">
-        <AcceptButton onAccept={props.onAccept}></AcceptButton>
-        <BusinessDetails details={props.onMore}></BusinessDetails>
-        <RejectButton onReject={props.onReject}></RejectButton>
+
+        <div className="container">
+            <Picture foodPic={props.foodImg}></Picture>
+            <div className="bottom">
+                <CardContainer color='red' foodPic={props.foodImg}> </CardContainer>
+                <AcceptButton onAccept={props.onAccept}></AcceptButton>
+                <BusinessDetails details={props.onMore}></BusinessDetails>
+                <RejectButton onReject={props.onReject}></RejectButton>
+            </div>
         </div>
-      </div>
     )
 }
