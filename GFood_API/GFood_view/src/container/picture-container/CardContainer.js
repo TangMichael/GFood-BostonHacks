@@ -5,15 +5,11 @@ const CardContainer = (props) => (
     <Card>
         <Image src={props.foodPic} />
         <Card.Content>
-            <Card.Header> Restaurant Name: </Card.Header>
+            <Card.Header> Restaurant Name: {props.details.name}</Card.Header>
             <Card.Meta>Joined in 2016</Card.Meta>
-            <Card.Description>Daniel is a comedian living in Nashville.</Card.Description>
+            <Card.Description>{props.details.categories}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <a>
-                <Icon name='user' />
-                10 Friends
-            </a>
         </Card.Content>
     </Card>
 );

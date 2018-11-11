@@ -10,9 +10,9 @@ export const PictureContainer = props => {
     return (
 
         <div className="container">
-            <Picture foodPic={props.foodImg}></Picture>
+            {/* <Picture foodPic={props.foodImg}></Picture> */}
+                <CardContainer color='red' details={props.onMore} foodPic={props.foodImg}> </CardContainer>
             <div className="bottom">
-                <CardContainer color='red' foodPic={props.foodImg}> </CardContainer>
                 <AcceptButton onAccept={props.onAccept}></AcceptButton>
                 <BusinessDetails details={props.onMore}></BusinessDetails>
                 <RejectButton onReject={props.onReject}></RejectButton>

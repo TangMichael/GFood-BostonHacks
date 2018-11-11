@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Grid, Image, Transition, Button } from 'semantic-ui-react'
-
+import { Form, Grid, Image, Transition, Button , Segment} from 'semantic-ui-react'
+import './../container/picture-container/pictureContainer.css'
 const transitions = [
   'fly down'
 ]
-const options = transitions.map(name => ({ key: name, text: name, value: name }))
+//const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
 export default class BusinessDetails extends Component {
     
@@ -16,18 +16,20 @@ export default class BusinessDetails extends Component {
     
   render() {
     const { animation, duration, visible } = this.state
-
     return (
         <div>
-            <Button onClick={this.handleVisibility}>Details</Button>
+            <div>
+                <Button onClick={this.handleVisibility}>Details</Button><br></br>
+            </div>
             <Transition.Group animation={animation} duration={duration}>
-             {visible && <p>
+             {visible &&
+                <Segment raised className="seg">
                  Restaurant Name: {this.props.details.name} <br></br>
                  {this.props.details.address} <br></br>
                  {this.props.details.city}, {this.props.details.state} <br></br>
                  {this.props.details.postal_code} <br></br>
                  Rating: {this.props.details.stars} / 5 ({this.props.details.review_count} reviews)
-             </p>}
+             </Segment>}
             </Transition.Group>
         </div>
     )
