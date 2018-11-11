@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Clarifai.API;
 using Clarifai.API.Responses;
 using Clarifai.DTOs.Inputs;
 using Clarifai.DTOs.Searches;
+using Newtonsoft.Json.Linq;
 
 namespace GFood_API
 {
@@ -18,6 +20,15 @@ namespace GFood_API
             .Page(1)
             .ExecuteAsync();
             return response;
+        }
+
+        public List<string> JObjectToURL(JObject jObject) {
+            List<string> urlList = new List<string>();
+            foreach (JToken hits in jObject.SelectToken("hits")) {
+                string url = (string)hits.SelectToken("input.data.image.url");
+                urlList.Add(url);
+            }
+            return urlList;
         }
 
     }
