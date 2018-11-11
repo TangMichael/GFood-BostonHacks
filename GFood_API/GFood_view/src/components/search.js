@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-export default class Search extends Component {
-  render() {
-    return (
-      <div>
-        
+
+export const Search = props => (
+      <div className="ui input">
+        <input onChange={props.handleChange} type="text" placeholder="Search..." />
+        <button className="ui button" role="button" onClick={props.search}>
+          Search
+        </button>
       </div>
-    )
-  }
-}
+    );
+
