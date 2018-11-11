@@ -28,11 +28,11 @@ class App extends Component {
   }
 
   handleReject() {
-
+    console.log('Rejected.');
   }
 
   handleAccept() {
-
+    console.log('Accepted.');
   }
 
 
@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         <Search search={this.handleSearch} handleChange={this.handleChange}></Search>
-        <PictureContainer></PictureContainer>
+        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
       </div>
     );
   }

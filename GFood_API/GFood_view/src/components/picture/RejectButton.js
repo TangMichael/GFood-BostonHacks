@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
+import { Button } from 'semantic-ui-react';
 
-export default class RejectButton extends Component {
-  render() {
+export const RejectButton = props => {
     return (
       <div>
-        
+        <Button onClick={props.onReject}>Reject</Button>
       </div>
     )
-  }
 }
