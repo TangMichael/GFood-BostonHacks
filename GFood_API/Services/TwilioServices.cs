@@ -25,7 +25,7 @@ namespace GFood_API
             this.toPhone = phone;
         }
 
-        public void sendMessage(string input) {
+        public void sendSMS(string input) {
             var message = MessageResource.Create(
                             body: input,
                             from: new Twilio.Types.PhoneNumber("+16042458428"),

@@ -13,6 +13,12 @@ namespace GFood_API.Controllers
     [ApiController]
     public class TwilioController : Controller
     {
+        TwilioServices services;
+
+        public TwilioController() {
+            services = new TwilioServices();
+        }
+
         public ActionResult Index()
         {
             var response = new VoiceResponse();
@@ -23,6 +29,13 @@ namespace GFood_API.Controllers
         private ActionResult TwiML(VoiceResponse response)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    [HttpGet]
+        public void sendSMS(string location)
+        {
+            services.sendSMS(location);
         }
     }
 }
