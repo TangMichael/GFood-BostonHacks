@@ -5,7 +5,8 @@ import Search from './components/search';
 import { PictureContainer } from './container/picture-container/PictureContainer';
 
 class App extends Component {
-  constructor() {
+  constructor(props) {
+    super(props);
     this.state = {
       id: [],
       imageURL: [],
@@ -18,15 +19,15 @@ class App extends Component {
   }
 
   handleSearch() {
-
+    
   }
 
   handleReject() {
-
+    console.log('Rejected.');
   }
 
   handleAccept() {
-
+    console.log('Accepted.');
   }
 
 
@@ -34,7 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <Search></Search>
-        <PictureContainer></PictureContainer>
+        <PictureContainer onAccept={this.handleAccept} onReject={this.handleReject} foodImg={this.state.imageURL[this.state.currentImage]}></PictureContainer>
       </div>
     );
   }

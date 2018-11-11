@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 
-export default class Picture extends Component {
-  render() {
+export const Picture = props => {
     return (
       <div>
         
       </div>
     )
-  }
 }
