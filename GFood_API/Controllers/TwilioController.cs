@@ -19,21 +19,10 @@ namespace GFood_API.Controllers
             service = new TwilioServices();
         }
 
-        public ActionResult Index()
+        [HttpPost]
+        public void sms(string location, string phone)
         {
-            var response = new VoiceResponse();
-            response.Say("hello world");
-            return TwiML(response);
-        }
-
-        private ActionResult TwiML(VoiceResponse response)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
-        public void sms(string location)
-        {
+            service.setToPhone(phone);
             service.sendSMS(location);
         }
     }
